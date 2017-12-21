@@ -1,11 +1,5 @@
 <?php
-# Nginx don't have PATH_INFO
-// if (!isset($_SERVER['PATH_INFO'])) {
-// 	$_SERVER['PATH_INFO'] = substr($_SERVER["ORIG_SCRIPT_FILENAME"], strlen($_SERVER["SCRIPT_FILENAME"]));
-// }
-
-// $request = substr($_SERVER['PATH_INFO'], 1);
-$request = "ARABIC.TXT";
+$request = $_REQUEST['file'] ;
 $file = $request;
 $fp = @fopen($file, 'rb');
 
@@ -14,7 +8,8 @@ $length = $size;           // Content length
 $start  = 0;               // Start byte
 $end    = $size - 1;       // End byte
 
-header('Content-type: video/mp4');
+// Set herader type
+// header('Content-type: video/mp4');
 header("Accept-Ranges: 0-$length");
 if (isset($_SERVER['HTTP_RANGE'])) {
 
